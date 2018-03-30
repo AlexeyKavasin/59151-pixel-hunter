@@ -1,3 +1,7 @@
-const getElFromTemplate = (html) => new DOMParser().parseFromString(html.trim(), `text/html`).body.childNodes;
+const getElFromTemplate = (tmpl) => {
+  const container = document.createElement(`div`);
+  container.innerHTML = tmpl;
+  return container;
+};
 
 export default getElFromTemplate;

@@ -1,3 +1,4 @@
 import showScreen from './showscreen.js';
+import introEl from './intro.js';
 
-document.querySelector(`.intro__asterisk`).addEventListener(`click`, () => showScreen(1));
+showScreen(introEl);
