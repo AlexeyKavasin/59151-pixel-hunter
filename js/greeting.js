@@ -19,7 +19,7 @@ const greetingEl = getElFromTemplate(`
   </div>${footer}
   `);
 
-let continueBtn = greetingEl.querySelector(`.greeting__continue`);
+const continueBtn = greetingEl.querySelector(`.greeting__continue`);
 continueBtn.addEventListener(`click`, () => showScreen(rulesEl));
 
 export default greetingEl;

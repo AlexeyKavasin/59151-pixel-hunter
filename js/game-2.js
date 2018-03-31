@@ -1,6 +1,8 @@
 import getElFromTemplate from './getelfromtemplate.js';
 import showScreen from './showscreen.js';
+import answerSelected from './answerselected.js';
 import footer from './footer.js';
+import game3El from './game-3.js';
 
 const game2El = getElFromTemplate(`
   <header class="header">
@@ -48,5 +50,15 @@ const game2El = getElFromTemplate(`
     </div>
   </div>${footer}
 `);
+
+const questions = game2El.querySelectorAll(`.game__answer input`);
+
+questions.forEach((q) => {
+  q.addEventListener(`click`, () => {
+    if(answerSelected(questions)) {
+      showScreen(game3El);
+    }
+  })
+});
 
 export default game2El;
