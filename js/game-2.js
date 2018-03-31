@@ -1,8 +1,9 @@
 import getElFromTemplate from './getelfromtemplate.js';
 import showScreen from './showscreen.js';
 import answerSelected from './answerselected.js';
-import footer from './footer.js';
+import introEl from './intro.js';
 import game3El from './game-3.js';
+import footer from './footer.js';
 
 const game2El = getElFromTemplate(`
   <header class="header">
@@ -52,7 +53,9 @@ const game2El = getElFromTemplate(`
 `);
 
 const questions = game2El.querySelectorAll(`.game__answer input`);
+const backBtn = game2El.querySelector('.back');
 
+backBtn.addEventListener(`click`, () => showScreen(introEl));
 questions.forEach((q) => {
   q.addEventListener(`click`, () => {
     if(answerSelected(questions)) {

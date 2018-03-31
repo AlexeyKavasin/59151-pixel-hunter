@@ -1,7 +1,8 @@
 import getElFromTemplate from './getelfromtemplate.js';
 import showScreen from './showscreen.js';
-import footer from './footer.js';
+import introEl from './intro.js';
 import game1El from './game-1.js';
+import footer from './footer.js';
 
 const rulesEl = getElFromTemplate(`
   <header class="header">
@@ -30,9 +31,13 @@ const rulesEl = getElFromTemplate(`
   </div>${footer}
 `);
 
-const isEmpty = (val) => val.length === 0;
+const backBtn = rulesEl.querySelector('.back');
 const rulesInput = rulesEl.querySelector('.rules__input');
 const rulesBtn = rulesEl.querySelector('.rules__button');
+
+const isEmpty = (val) => val.length === 0;
+
+backBtn.addEventListener(`click`, () => showScreen(introEl));
 rulesInput.addEventListener(`input`, () => isEmpty(rulesInput.value) ? rulesBtn.disabled = true : rulesBtn.disabled = false);
 rulesBtn.addEventListener(`click`, (evt) => {
   evt.preventDefault();

@@ -1,7 +1,8 @@
 import getElFromTemplate from './getelfromtemplate.js';
 import showScreen from './showscreen.js';
-import footer from './footer.js';
+import introEl from './intro.js';
 import statsEl from './stats.js';
+import footer from './footer.js';
 
 const game3El = getElFromTemplate(`
   <header class="header">
@@ -49,6 +50,9 @@ const game3El = getElFromTemplate(`
 `);
 
 const options = game3El.querySelectorAll(`.game__option`);
+const backBtn = game3El.querySelector('.back');
+
+backBtn.addEventListener(`click`, () => showScreen(introEl));
 options.forEach((o) => {
   o.addEventListener(`click`, () => showScreen(statsEl));
 })

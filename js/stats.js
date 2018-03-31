@@ -1,5 +1,6 @@
 import getElFromTemplate from './getelfromtemplate.js';
 import showScreen from './showscreen.js';
+import introEl from './intro.js';
 import footer from './footer.js';
 
 const statsEl = getElFromTemplate(`
@@ -112,5 +113,8 @@ const statsEl = getElFromTemplate(`
     </table>
   </div>${footer}
 `);
+
+const backBtn = statsEl.querySelector('.back');
+backBtn.addEventListener(`click`, () => showScreen(introEl));
 
 export default statsEl;
