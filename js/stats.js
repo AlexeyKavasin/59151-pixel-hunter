@@ -114,7 +114,7 @@ const statsEl = getElFromTemplate(`
   </div>${footer}
 `);
 
-const backBtn = statsEl.querySelector('.back');
+const backBtn = statsEl.querySelector(`.back`);
 backBtn.addEventListener(`click`, () => showScreen(introEl));
 
 export default statsEl;

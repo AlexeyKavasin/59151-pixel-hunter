@@ -64,15 +64,15 @@ const game1El = getElFromTemplate(`
 `);
 
 const questions = game1El.querySelectorAll(`.game__answer input`);
-const backBtn = game1El.querySelector('.back');
+const backBtn = game1El.querySelector(`.back`);
 
 backBtn.addEventListener(`click`, () => showScreen(introEl));
 questions.forEach((q) => {
   q.addEventListener(`click`, () => {
-    if(answerSelected(questions)) {
+    if (answerSelected(questions)) {
       showScreen(game2El);
     }
-  })
+  });
 });
 
 export default game1El;
