@@ -50,11 +50,11 @@ const game3El = getElFromTemplate(`
 `);
 
 const options = game3El.querySelectorAll(`.game__option`);
-const backBtn = game3El.querySelector('.back');
+const backBtn = game3El.querySelector(`.back`);
 
 backBtn.addEventListener(`click`, () => showScreen(introEl));
 options.forEach((o) => {
   o.addEventListener(`click`, () => showScreen(statsEl));
-})
+});
 
 export default game3El;

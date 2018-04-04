@@ -31,14 +31,20 @@ const rulesEl = getElFromTemplate(`
   </div>${footer}
 `);
 
-const backBtn = rulesEl.querySelector('.back');
-const rulesInput = rulesEl.querySelector('.rules__input');
-const rulesBtn = rulesEl.querySelector('.rules__button');
+const backBtn = rulesEl.querySelector(`.back`);
+const rulesInput = rulesEl.querySelector(`.rules__input`);
+const rulesBtn = rulesEl.querySelector(`.rules__button`);
 
 const isEmpty = (val) => val.length === 0;
 
 backBtn.addEventListener(`click`, () => showScreen(introEl));
-rulesInput.addEventListener(`input`, () => isEmpty(rulesInput.value) ? rulesBtn.disabled = true : rulesBtn.disabled = false);
+rulesInput.addEventListener(`input`, () => {
+  if (isEmpty(rulesInput.value)) {
+    rulesBtn.disabled = true;
+  } else {
+    rulesBtn.disabled = false;
+  }
+});
 rulesBtn.addEventListener(`click`, (evt) => {
   evt.preventDefault();
   showScreen(game1El);
