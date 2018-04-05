@@ -1,26 +1,35 @@
+const answerPoints = {
+  correct: 100,
+  fast: 50,
+  slow: -50,
+  failed: -1,
+  lives: 50
+};
+
 export const countResults = (answersArr, lives) => {
   if (typeof lives !== `number` || !Array.isArray(answersArr)) {
-    return -1;
+    return answerPoints.failed;
   }
 
-  if (lives <= 0 || answersArr.length < 10) {
-    return -1;
+  if (lives < 1 || answersArr.length < 10) {
+    return answerPoints.failed;
   }
 
-  let answerPoints = 0;
-  let livesBonus = lives * 50;
-  let timeBonus = 0;
+  let score = lives * answerPoints.lives;
 
   answersArr.forEach((a) => {
-    if (a.answered === true) {
-      answerPoints += 100;
-    }
-    if (a.time < 10) {
-      timeBonus += 50;
-    }
-    if (a.time > 20) {
-      timeBonus -= 50;
+    switch (a) {
+      case `correct`:
+        score += answerPoints.correct;
+        break;
+      case `fast`:
+        score += answerPoints.correct + answerPoints.fast;
+        break;
+      case `slow`:
+        score += answerPoints.correct + answerPoints.slow;
+        break;
     }
   });
-  return answerPoints + livesBonus + timeBonus;
+
+  return score;
 };
