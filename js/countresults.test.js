@@ -20,11 +20,19 @@ describe(`countResults function testing`, () => {
     assert.equal(countResults({}, {}), -1);
   });
   it(`should return 1150 if all correct and 3 lives left`, () => {
-    const answers = [`correct`, `correct`, `correct`, `correct`, `correct`, `correct`, `correct`, `correct`, `correct`, `correct`];
+    let answers = [`correct`, `correct`, `correct`, `correct`, `correct`, `correct`, `correct`, `correct`, `correct`, `correct`];
     assert.equal(countResults(answers, 3), 1150);
   });
-  it(`should return 1050 if 1 fast, 2 slow, 7 correct answers and 2 lives left`, () => {
-    const answers = [`correct`, `correct`, `correct`, `slow`, `correct`, `correct`, `correct`, `correct`, `slow`, `fast`];
+  it(`should return 850 if 4 correct, 2 wrong, 2 fast, 2 slow and 1 live left`, () => {
+    let answers = [`fast`, `fast`, `slow`, `slow`, `wrong`, `wrong`, `correct`, `correct`, `correct`, `correct`];
+    assert.equal(countResults(answers, 1), 850);
+  });
+  it(`should return 1050 if 7 correct, 1 fast, 2 slow and 2 lives left`, () => {
+    let answers = [`correct`, `correct`, `correct`, `slow`, `correct`, `correct`, `correct`, `correct`, `slow`, `fast`];
+    assert.equal(countResults(answers, 2), 1050);
+  });
+  it(`should return 1050 if 8 correct, 1 wrong, 1 fast and 2 lives left`, () => {
+    let answers = [`fast`, `correct`, `correct`, `correct`, `correct`, `correct`, `correct`, `correct`, `correct`, `wrong`];
     assert.equal(countResults(answers, 2), 1050);
   });
 });
