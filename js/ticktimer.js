@@ -16,6 +16,7 @@ export const tickTimer = (time) => {
         timerObj.active = false;
         return `Time is up`;
       }
+      return timerObj.time;
     }
   };
 
