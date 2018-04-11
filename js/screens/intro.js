@@ -1,5 +1,5 @@
-import getElFromTemplate from './getelfromtemplate.js';
-import showScreen from './showscreen.js';
+import getElFromTemplate from '../getelfromtemplate.js';
+import showScreen from '../showscreen.js';
 import greetingEL from './greeting.js';
 import footer from './footer.js';
 
