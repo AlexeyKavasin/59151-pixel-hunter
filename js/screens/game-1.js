@@ -12,7 +12,7 @@ const gameContent = (data) =>
    <form class="game__content">
      ${[...data.options].map((option, ind) =>
     `<div class="game__option">
-      <img src="${option.img}" alt="Option ${ind + 1}" width="468" height="458">
+      <img src="${option.img}" alt="Option ${ind + 1}" width="100%" height="auto">
       <label class="game__answer game__answer--photo">
         <input name="question${ind + 1}" type="radio" value="photo">
         <span>Фото</span>

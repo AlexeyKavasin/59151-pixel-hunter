@@ -11,7 +11,7 @@ const gameContent = (data) =>
   <form class="game__content  game__content--triple">
      ${[...data.options].map((option, ind) =>
     `<div class="game__option">
-      <img src="${option.img}" alt="Option ${ind + 1}" width="304" height="455">
+      <img src="${option.img}" alt="Option ${ind + 1}" width="100%" height="auto">
     </div>`).join(``)}
   </form>`;
 

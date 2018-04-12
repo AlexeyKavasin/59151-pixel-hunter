@@ -1,8 +1,8 @@
-const gameState = {
+const gameState = Object.freeze({
   time: 30,
   lives: 3,
   question: `question-0`
-};
+});
 
 const questionsData = {
   'question-0': {
@@ -11,17 +11,11 @@ const questionsData = {
         [
           {
             img: `http://placehold.it/468x458`,
-            variants: {
-              photo: `question-1`,
-              paint: null
-            }
+            correct: `photo`
           },
           {
             img: `http://placehold.it/468x458`,
-            variants: {
-              photo: null,
-              paint: `question-1`
-            }
+            correct: `paint`
           },
         ]
     )
@@ -32,10 +26,7 @@ const questionsData = {
         [
           {
             img: `http://placehold.it/705x455`,
-            variants: {
-              photo: null,
-              paint: `question-2`
-            }
+            correct: `photo`
           }
         ]
     )
@@ -46,25 +37,98 @@ const questionsData = {
         [
           {
             img: `http://placehold.it/304x455`,
-            variants: {
-              photo: null,
-              paint: `question-3`
-            }
+            correct: `photo`
           },
           {
             img: `http://placehold.it/304x455`,
-            variants: {
-              photo: null,
-              paint: `question-3`
-            }
+            correct: `photo`
           },
           {
             img: `http://placehold.it/304x455`,
-            variants: {
-              photo: null,
-              paint: `question-3`
-            }
+            correct: `photo`
           }
+        ]
+    )
+  },
+  'question-3': {
+    task: `Угадайте для каждого изображения фото или рисунок?`,
+    options: new Set(
+        [
+          {
+            img: `http://placehold.it/468x458`,
+            correct: `photo`
+          },
+          {
+            img: `http://placehold.it/468x458`,
+            correct: `paint`
+          },
+        ]
+    )
+  },
+  'question-4': {
+    task: `Угадай, фото или рисунок?`,
+    options: new Set(
+        [
+          {
+            img: `http://placehold.it/705x455`,
+            correct: `photo`
+          }
+        ]
+    )
+  },
+  'question-5': {
+    task: `Угадайте для каждого изображения фото или рисунок?`,
+    options: new Set(
+        [
+          {
+            img: `http://placehold.it/468x458`,
+            correct: `photo`
+          },
+          {
+            img: `http://placehold.it/468x458`,
+            correct: `paint`
+          },
+        ]
+    )
+  },
+  'question-6': {
+    task: `Угадайте для каждого изображения фото или рисунок?`,
+    options: new Set(
+        [
+          {
+            img: `http://placehold.it/468x458`,
+            correct: `photo`
+          },
+          {
+            img: `http://placehold.it/468x458`,
+            correct: `paint`
+          },
+        ]
+    )
+  },
+  'question-7': {
+    task: `Угадай, фото или рисунок?`,
+    options: new Set(
+        [
+          {
+            img: `http://placehold.it/705x455`,
+            correct: `photo`
+          }
+        ]
+    )
+  },
+  'question-8': {
+    task: `Угадайте для каждого изображения фото или рисунок?`,
+    options: new Set(
+        [
+          {
+            img: `http://placehold.it/468x458`,
+            correct: `photo`
+          },
+          {
+            img: `http://placehold.it/468x458`,
+            correct: `paint`
+          },
         ]
     )
   }

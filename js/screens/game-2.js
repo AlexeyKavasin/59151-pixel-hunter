@@ -12,12 +12,12 @@ const gameContent = (data) =>
    <form class="game__content game__content--wide">
      ${[...data.options].map((option, ind) =>
     `<div class="game__option">
-      <img src="${option.img}" alt="Option ${ind + 1}" width="705" height="455">
-      <label class="game__answer  game__answer--photo">
+      <img src="${option.img}" alt="Option ${ind + 1}" width="100%" height="auto">
+      <label class="game__answer game__answer--photo">
         <input name="question${ind + 1}" type="radio" value="photo">
         <span>Фото</span>
       </label>
-      <label class="game__answer  game__answer--wide  game__answer--paint">
+      <label class="game__answer game__answer--paint">
         <input name="question${ind + 1}" type="radio" value="paint">
         <span>Рисунок</span>
       </label>
