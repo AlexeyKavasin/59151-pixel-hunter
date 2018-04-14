@@ -1,4 +1,4 @@
-import {gameState} from '../data/game-data.js';
+import {gameState} from '../data/game-state.js';
 
 const gameHeader = (state) =>
   `<header class="header">
@@ -8,7 +8,7 @@ const gameHeader = (state) =>
         <img src="img/logo_small.svg" width="101" height="44">
       </button>
     </div>
-    <h1 class="game__timer">${state.time}</h1>
+    <h1 class="game__timer">${state.timer}</h1>
     <div class="game__lives">
     ${new Array(3 - state.lives)
       .fill(`<img src="img/heart__empty.svg" class="game__heart" alt="Life" width="32" height="32">`)
