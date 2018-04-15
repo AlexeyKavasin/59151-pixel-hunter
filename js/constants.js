@@ -1,5 +1,7 @@
 export const LEVELS_COUNT = 10;
 export const LIVES_COUNT = 3;
+export const FAST_ANSWER = 9;
+export const SLOW_ANSWER = 21;
 
 export const QUESTION_TYPES = {
   chooseType: `chooseType`,

@@ -17,9 +17,9 @@ export const askQuestion = (img1, img2, img3) => {
 
 export const addBehaviour = (el, nextLevel, correctAnswer, answers) => {
   const formOptions = el.querySelectorAll(`.game__option`);
-  Array.from(formOptions, (option, ind) => {
+  Array.from(formOptions).forEach((option, ind) => {
     option.addEventListener(`click`, () => {
-      const isCorrectAnswer = index === correctAnswer;
+      const isCorrectAnswer = ind === correctAnswer;
       showScreen(nextLevel(isCorrectAnswer));
     });
   });

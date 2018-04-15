@@ -8,7 +8,7 @@ export const gameState = Object.freeze({
 
 export const setLevel = (currentState, level) => {
   if (level < 0 || level > LEVELS_COUNT) {
-    return;
+    return null;
   }
   const newState = Object.assign({}, currentState);
   newState.level = level;
@@ -17,7 +17,7 @@ export const setLevel = (currentState, level) => {
 
 export const setLives = (currentState, lives) => {
   if (lives < 0 || lives > LIVES_COUNT) {
-    return;
+    return null;
   }
   const newState = Object.assign({}, currentState);
   newState.lives = lives;
@@ -26,7 +26,7 @@ export const setLives = (currentState, lives) => {
 
 export const setTimer = (currentState, timer) => {
   if (timer < 0) {
-    return;
+    return null;
   }
   const newState = Object.assign({}, currentState);
   newState.timer = timer;

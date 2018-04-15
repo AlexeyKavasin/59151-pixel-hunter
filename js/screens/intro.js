@@ -3,7 +3,8 @@ import showScreen from '../showscreen.js';
 import greetingEL from './greeting.js';
 import footer from './footer.js';
 import {gameState, setTimer} from '../data/game-state.js';
-import {tickTimer} from '../ticktimer.js';
+import {timer} from '../timer.js';
+import handleTimer from '../timer-handler.js';
 import {answers} from '../data/answers.js';
 import {TIME_TO_GAME} from '../constants.js';
 
@@ -17,9 +18,11 @@ const introEl = () => {
     </div>
     ${footer}`);
     el.querySelector(`.intro__asterisk`).addEventListener(`click`, () => {
-      const initState = setTimer(gameState, tickTimer(TIME_TO_GAME));
+      const initState = setTimer(gameState, timer());
       showScreen(greetingEL(initState, answers));
     });
+
+    handleTimer();
 
     return el;
 };
