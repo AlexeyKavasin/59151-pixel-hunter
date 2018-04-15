@@ -37,13 +37,13 @@ const rulesEl = (state, answers) => {
     ${footer}`);
 
     const form = el.querySelector(`.rules__form`);
-    const submitBtn = form.querySelector(`rules__button`);
-    const nameInput = form.querySelector(`rules__input`);
+    const submitBtn = form.querySelector(`.rules__button`);
+    const nameInput = form.querySelector(`.rules__input`);
     const isEmpty = (val) => val.length === 0;
 
     nameInput.addEventListener(`input`, ({target}) => {
       if (!isEmpty(target.value.trim())) {
-        submitBtn.removeAttribute(`disbled`);
+        submitBtn.removeAttribute(`disabled`);
       } else {
         submitBtn.setAttribute(`disabled`, `disabled`);
       }

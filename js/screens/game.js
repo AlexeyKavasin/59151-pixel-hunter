@@ -3,6 +3,8 @@ import showScreen from '../showscreen.js';
 import gameHeader from './gameheader.js';
 import footer from './footer.js';
 import {setLevel, setLives} from '../data/game-state.js';
+import questions from '../data/questions.js';
+import {addAnswer, getAnswerValue} from '../data/answers.js';
 import * as questionChooseType from './question-choose-type.js';
 import * as questionFindPic from './question-find-pic.js';
 import * as questionPhotoOrPic from './question-photo-or-pic.js';
@@ -31,9 +33,9 @@ const gameEl = (state, answers) => {
   }
 
   const el = getElFromTemplate(`
-    ${gameHeader({timer, lives})}
+    ${gameHeader(TIME_TO_GAME, lives)}
     <div class="game">
-      <p class="game__task">${QUESTIONS_TITLES[questions[level].type]}</p>
+      <p class="game__task">${QUESTION_TITLES[questions[level].type]}</p>
       ${askQuestion(...questions[level].images)}
       <div class="stats">
       </div>

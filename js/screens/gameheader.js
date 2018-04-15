@@ -1,6 +1,4 @@
-import {gameState} from '../data/game-state.js';
-
-const gameHeader = (state) =>
+const gameHeader = (timer, lives) =>
   `<header class="header">
     <div class="header__back">
       <button class="back">
@@ -8,15 +6,15 @@ const gameHeader = (state) =>
         <img src="img/logo_small.svg" width="101" height="44">
       </button>
     </div>
-    <h1 class="game__timer">${state.timer}</h1>
+    <h1 class="game__timer">${timer}</h1>
     <div class="game__lives">
-    ${new Array(3 - state.lives)
+    ${new Array(3 - lives)
       .fill(`<img src="img/heart__empty.svg" class="game__heart" alt="Life" width="32" height="32">`)
       .join(``)}
-    ${new Array(state.lives)
+    ${new Array(lives)
       .fill(`<img src="img/heart__full.svg" class="game__heart" alt="Life" width="32" height="32">`)
       .join(``)}
     </div>
   </header>`;
 
-export default gameHeader(gameState);
+export default gameHeader;

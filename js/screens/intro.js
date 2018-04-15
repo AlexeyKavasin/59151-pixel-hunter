@@ -4,6 +4,7 @@ import greetingEL from './greeting.js';
 import footer from './footer.js';
 import {gameState, setTimer} from '../data/game-state.js';
 import {tickTimer} from '../ticktimer.js';
+import {answers} from '../data/answers.js';
 import {TIME_TO_GAME} from '../constants.js';
 
 const introEl = () => {

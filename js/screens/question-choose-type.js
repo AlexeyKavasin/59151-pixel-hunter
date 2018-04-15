@@ -1,6 +1,6 @@
 import showScreen from '../showscreen.js';
 
-export function askQuestion(img1, img2) {
+export const askQuestion = (img1, img2) => {
   return `
   <form class="game__content">
       <div class="game__option">
@@ -28,16 +28,13 @@ export function askQuestion(img1, img2) {
     </form>`;
 }
 
-const questionsInputs = game1El.querySelectorAll(`.game__answer input`);
-const backBtn = game1El.querySelector(`.back`);
-
-backBtn.addEventListener(`click`, () => showScreen(introEl));
-questionsInputs.forEach((q) => {
-  q.addEventListener(`click`, () => {
-    if (answerSelected(questionsInputs)) {
-      showScreen(game2El);
+export const addBehaviour = (el, nextLevel, correctAnswer, answers) => {
+  const form = el.querySelector(`.game__content`);
+  form.addEventListener(`change`, () => {
+    const answersChecked = form.querySelectorAll(`input[type="radio"]:checked`);
+    if (answersChecked.length === 2) {
+      const isCorrectAnswer = correctAnswer[0] === answersChecked[0].value && correctAnswer[1] === answersChecked[1].value;
+      showScreen(nextLevel(isCorrectAnswer));
     }
-  });
-});
-
-export default game1El;
+  })
+}
