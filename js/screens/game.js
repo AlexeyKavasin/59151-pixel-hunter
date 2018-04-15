@@ -7,6 +7,7 @@ import timer from '../timer.js';
 import handleTimer from '../timer-handler.js';
 import {setLevel, setLives} from '../data/game-state.js';
 import questions from '../data/questions.js';
+import {gameStatsHtml} from './stats-progress.js';
 import {addAnswer, getAnswerValue} from '../data/answers.js';
 import * as questionChooseType from './question-choose-type.js';
 import * as questionFindPic from './question-find-pic.js';
@@ -51,6 +52,7 @@ const gameEl = (state, answers) => {
       <p class="game__task">${QUESTION_TITLES[questions[level].type]}</p>
       ${askQuestion(...questions[level].images)}
       <div class="stats">
+      ${gameStatsHtml(answers)}
       </div>
     </div>
     ${footer}
