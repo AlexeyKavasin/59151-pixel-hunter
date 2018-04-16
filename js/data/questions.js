@@ -51,4 +51,4 @@ export default [
     images: [`https://k42.kn3.net/CF42609C8.jpg`, `http://i.imgur.com/1KegWPz.jpg`],
     correctAnswer: [ANSWER_TYPES.paint, ANSWER_TYPES.photo]
   }
-]
+];

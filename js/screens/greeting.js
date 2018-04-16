@@ -20,11 +20,11 @@ const greetingEl = (state, answers) => {
     </div>
     ${footer}`);
 
-    el.querySelector(`.greeting__continue`).addEventListener(`click`, () => {
-      showScreen(rulesEl(state, answers));
-    });
+  el.querySelector(`.greeting__continue`).addEventListener(`click`, () => {
+    showScreen(rulesEl(state, answers));
+  });
 
-    return el;
-}
+  return el;
+};
 
 export default greetingEl;

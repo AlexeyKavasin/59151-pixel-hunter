@@ -15,9 +15,9 @@ export const askQuestion = (img) => {
         </label>
       </div>
     </form>`;
-}
+};
 
-export const addBehaviour = (el, nextLevel, correctAnswer, answers) => {
+export const addBehaviour = (el, nextLevel, correctAnswer) => {
   const form = el.querySelector(`.game__content`);
   form.addEventListener(`change`, () => {
     const userAnswer = form.querySelector(`[name="question1"]:checked`);
@@ -25,5 +25,5 @@ export const addBehaviour = (el, nextLevel, correctAnswer, answers) => {
       const isCorrectAnswer = userAnswer.value === correctAnswer;
       showScreen(nextLevel(isCorrectAnswer));
     }
-  })
-}
+  });
+};

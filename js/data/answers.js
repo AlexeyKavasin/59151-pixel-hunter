@@ -4,7 +4,7 @@ export const answers = [];
 
 export const addAnswer = (currentAnswers, answer) => {
   return [...currentAnswers, answer];
-}
+};
 
 export const getAnswerValue = (isCorrectAnswer, levelTime) => {
   if (!isCorrectAnswer) {
@@ -14,4 +14,4 @@ export const getAnswerValue = (isCorrectAnswer, levelTime) => {
     return ANSWER_VALUES.fast;
   }
   return levelTime >= SLOW_ANSWER ? ANSWER_VALUES.slow : ANSWER_VALUES.correct;
-}
+};

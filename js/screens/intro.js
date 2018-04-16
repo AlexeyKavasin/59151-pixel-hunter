@@ -6,7 +6,6 @@ import {gameState, setTimer} from '../data/game-state.js';
 import {timer} from '../timer.js';
 import handleTimer from '../timer-handler.js';
 import {answers} from '../data/answers.js';
-import {TIME_TO_GAME} from '../constants.js';
 
 const introEl = () => {
   const el = getElFromTemplate(`
@@ -17,14 +16,14 @@ const introEl = () => {
       </div>
     </div>
     ${footer}`);
-    el.querySelector(`.intro__asterisk`).addEventListener(`click`, () => {
-      const initState = setTimer(gameState, timer());
-      showScreen(greetingEL(initState, answers));
-    });
+  el.querySelector(`.intro__asterisk`).addEventListener(`click`, () => {
+    const initState = setTimer(gameState, timer());
+    showScreen(greetingEL(initState, answers));
+  });
 
-    handleTimer();
+  handleTimer();
 
-    return el;
+  return el;
 };
 
 export default introEl;

@@ -26,9 +26,9 @@ export const askQuestion = (img1, img2) => {
         </label>
       </div>
     </form>`;
-}
+};
 
-export const addBehaviour = (el, nextLevel, correctAnswer, answers) => {
+export const addBehaviour = (el, nextLevel, correctAnswer) => {
   const form = el.querySelector(`.game__content`);
   form.addEventListener(`change`, () => {
     const answersChecked = form.querySelectorAll(`input[type="radio"]:checked`);
@@ -36,5 +36,5 @@ export const addBehaviour = (el, nextLevel, correctAnswer, answers) => {
       const isCorrectAnswer = correctAnswer[0] === answersChecked[0].value && correctAnswer[1] === answersChecked[1].value;
       showScreen(nextLevel(isCorrectAnswer));
     }
-  })
-}
+  });
+};

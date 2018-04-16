@@ -13,9 +13,9 @@ export const askQuestion = (img1, img2, img3) => {
         <img src="${img3}" alt="Option 1" width="304" height="455">
       </div>
     </form>`;
-}
+};
 
-export const addBehaviour = (el, nextLevel, correctAnswer, answers) => {
+export const addBehaviour = (el, nextLevel, correctAnswer) => {
   const formOptions = el.querySelectorAll(`.game__option`);
   Array.from(formOptions).forEach((option, ind) => {
     option.addEventListener(`click`, () => {
@@ -23,4 +23,4 @@ export const addBehaviour = (el, nextLevel, correctAnswer, answers) => {
       showScreen(nextLevel(isCorrectAnswer));
     });
   });
-}
+};

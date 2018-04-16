@@ -1,111 +1,52 @@
 import getElFromTemplate from '../getelfromtemplate.js';
-import back.js from './back.js';
-import showScreen from '../showscreen.js';
+import back from './back.js';
 import header from './header.js';
 import footer from './footer.js';
-import gameStatsHtml from './stats-progress.js';
+import {gameStatsHtml} from './stats-progress-bar.js';
+import {calculateStats, addGameStats, getGameStats} from '../data/stats-count.js';
 
-const statsHtml = ({answers}, index) => {
+const statsHtml = ({answers, bonuses, regularPoints, totalResult: {success, score}}, index) => {
   return `
       <table class="result__table">
         <tr>
           <td class="result__number">${index + 1}.</td>
           <td colspan="2">${gameStatsHtml(answers)}</td>
           <td class="result__points">×&nbsp;100</td>
-          <td class="result__total">900</td>
+          <td class="result__total">${regularPoints ? regularPoints : 0}</td>
         </tr>
+        ${[...bonuses].map(({title, icon, count, points, total}) => {
+    return `
         <tr>
           <td></td>
-          <td class="result__extra">Бонус за скорость:</td>
-          <td class="result__extra">1&nbsp;<span class="stats__result stats__result--fast"></span></td>
-          <td class="result__points">×&nbsp;50</td>
-          <td class="result__total">50</td>
-        </tr>
+          <td class="result__extra">${title}</td>
+          <td class="result__extra">${count}&nbsp;<span class="stats__result stats__result--${icon}"></span></td>
+          <td class="result__points">x&nbsp;${points}</td>
+          <td class="result__total">x&nbsp;${total}</td>
+        </tr>`;
+  }).join(``)}
         <tr>
-          <td></td>
-          <td class="result__extra">Бонус за жизни:</td>
-          <td class="result__extra">2&nbsp;<span class="stats__result stats__result--alive"></span></td>
-          <td class="result__points">×&nbsp;50</td>
-          <td class="result__total">100</td>
+          <td colspan="5" class="result__total  result__total--final">${success ? score : `FAIL`}</td>
         </tr>
-        <tr>
-          <td></td>
-          <td class="result__extra">Штраф за медлительность:</td>
-          <td class="result__extra">2&nbsp;<span class="stats__result stats__result--slow"></span></td>
-          <td class="result__points">×&nbsp;50</td>
-          <td class="result__total">-100</td>
-        </tr>
-        <tr>
-          <td colspan="5" class="result__total  result__total--final">950</td>
-        </tr>
-      </table>
-      <table class="result__table">
-        <tr>
-          <td class="result__number">2.</td>
-          <td>
-            <ul class="stats">
-              <li class="stats__result stats__result--wrong"></li>
-              <li class="stats__result stats__result--slow"></li>
-              <li class="stats__result stats__result--fast"></li>
-              <li class="stats__result stats__result--correct"></li>
-              <li class="stats__result stats__result--wrong"></li>
-              <li class="stats__result stats__result--unknown"></li>
-              <li class="stats__result stats__result--slow"></li>
-              <li class="stats__result stats__result--wrong"></li>
-              <li class="stats__result stats__result--fast"></li>
-              <li class="stats__result stats__result--wrong"></li>
-            </ul>
-          </td>
-          <td class="result__total"></td>
-          <td class="result__total  result__total--final">fail</td>
-        </tr>
-      </table>
-      <table class="result__table">
-        <tr>
-          <td class="result__number">3.</td>
-          <td colspan="2">
-            <ul class="stats">
-              <li class="stats__result stats__result--wrong"></li>
-              <li class="stats__result stats__result--slow"></li>
-              <li class="stats__result stats__result--fast"></li>
-              <li class="stats__result stats__result--correct"></li>
-              <li class="stats__result stats__result--wrong"></li>
-              <li class="stats__result stats__result--unknown"></li>
-              <li class="stats__result stats__result--slow"></li>
-              <li class="stats__result stats__result--unknown"></li>
-              <li class="stats__result stats__result--fast"></li>
-              <li class="stats__result stats__result--unknown"></li>
-            </ul>
-          </td>
-          <td class="result__points">×&nbsp;100</td>
-          <td class="result__total">900</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td class="result__extra">Бонус за жизни:</td>
-          <td class="result__extra">2&nbsp;<span class="stats__result stats__result--alive"></span></td>
-          <td class="result__points">×&nbsp;50</td>
-          <td class="result__total">100</td>
-        </tr>
-        <tr>
-          <td colspan="5" class="result__total  result__total--final">950</td>
-        </tr>
-      </table>
-    </div>
-    ${footer}`;
-});
+      </table>`;
+};
 
-const statsEl = (state, answers) => {
+export const statsEl = (state, answers) => {
+  const statistic = calculateStats(state, answers);
+  addGameStats(statistic);
+  const totalStats = getGameStats();
+
   const el = getElFromTemplate(`
     ${header(state)}
     <div class="result">
-      <h1>
+      <h1>${statistic.totalResult.success ? `Победа!` : `Вы проиграли`}</h1>
+      ${totalStats.map((stats, index) => {
+    return statsHtml(stats, index);
+  }).join(``)}
     </div>
+    ${footer}
   `);
 
   back(el, state);
 
   return el;
-}
-
-export default statsEl;
+};

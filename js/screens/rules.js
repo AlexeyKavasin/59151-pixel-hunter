@@ -4,7 +4,7 @@ import back from './back.js';
 import gameEl from './game.js';
 import header from './header.js';
 import footer from './footer.js';
-import {LEVELS_COUNT, TIME_TO_GAME, LIVES_COUNT} from '../constants.js'
+import {LEVELS_COUNT, TIME_TO_GAME, LIVES_COUNT} from '../constants.js';
 
 const rulesDescription = `
   <p class="rules__description">Угадай ${LEVELS_COUNT} раз для каждого изображения фото <img
@@ -30,27 +30,27 @@ const rulesEl = (state, answers) => {
     </div>
     ${footer}`);
 
-    const form = el.querySelector(`.rules__form`);
-    const submitBtn = form.querySelector(`.rules__button`);
-    const nameInput = form.querySelector(`.rules__input`);
-    const isEmpty = (val) => val.length === 0;
+  const form = el.querySelector(`.rules__form`);
+  const submitBtn = form.querySelector(`.rules__button`);
+  const nameInput = form.querySelector(`.rules__input`);
+  const isEmpty = (val) => val.length === 0;
 
-    nameInput.addEventListener(`input`, ({target}) => {
-      if (!isEmpty(target.value.trim())) {
-        submitBtn.removeAttribute(`disabled`);
-      } else {
-        submitBtn.setAttribute(`disabled`, `disabled`);
-      }
-    });
+  nameInput.addEventListener(`input`, ({target}) => {
+    if (!isEmpty(target.value.trim())) {
+      submitBtn.removeAttribute(`disabled`);
+    } else {
+      submitBtn.setAttribute(`disabled`, `disabled`);
+    }
+  });
 
-    form.addEventListener(`submit`, (evt) => {
-      evt.preventDefault();
-      showScreen(gameEl(state, answers));
-    })
+  form.addEventListener(`submit`, (evt) => {
+    evt.preventDefault();
+    showScreen(gameEl(state, answers));
+  });
 
-    back(el, state);
+  back(el, state);
 
-    return el;
-}
+  return el;
+};
 
 export default rulesEl;
