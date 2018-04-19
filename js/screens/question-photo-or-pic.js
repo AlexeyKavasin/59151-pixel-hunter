@@ -1,8 +1,10 @@
-import showScreen from '../showscreen.js';
+import showScreen from '../showscreen';
 
-export const askQuestion = (img) => {
+export const askQuestion = (imgs) => {
   return `
   <form class="game__content  game__content--wide">
+    ${imgs.map((img) => {
+    return `
       <div class="game__option">
         <img src="${img}" alt="Option 1" width="705" height="455">
         <label class="game__answer  game__answer--photo">
@@ -14,7 +16,9 @@ export const askQuestion = (img) => {
           <span>Рисунок</span>
         </label>
       </div>
-    </form>`;
+      `;
+  }).join(``)}
+  </form>`;
 };
 
 export const addBehaviour = (el, nextLevel, correctAnswer) => {

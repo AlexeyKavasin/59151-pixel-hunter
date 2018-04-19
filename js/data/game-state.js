@@ -1,4 +1,4 @@
-import {LEVELS_COUNT, LIVES_COUNT} from '../constants.js';
+import {LEVELS_COUNT, LIVES_COUNT} from './constants';
 
 export const gameState = Object.freeze({
   level: 0,
