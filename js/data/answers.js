@@ -1,4 +1,4 @@
-import {ANSWER_VALUES, FAST_ANSWER, SLOW_ANSWER} from '../constants.js';
+import {ANSWER_VALUES, FAST_ANSWER, SLOW_ANSWER} from './constants';
 
 export const answers = [];
 

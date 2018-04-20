@@ -1,4 +1,4 @@
-import {LEVELS_COUNT, POINTS, ANSWER_VALUES} from '../constants.js';
+import {LEVELS_COUNT, POINTS, ANSWER_VALUES} from './constants';
 
 export const calculateStats = (state, answers) => {
   if (answers.length < LEVELS_COUNT) {

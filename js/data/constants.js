@@ -1,12 +1,23 @@
+import * as questionChooseType from '../screens/question-choose-type';
+import * as questionFindPic from '../screens/question-find-pic';
+import * as questionPhotoOrPic from '../screens/question-photo-or-pic';
+
 export const LEVELS_COUNT = 10;
 export const LIVES_COUNT = 3;
 export const FAST_ANSWER = 9;
 export const SLOW_ANSWER = 21;
+export const TIME_TO_GAME = 30;
 
 export const QUESTION_TYPES = {
   chooseType: `chooseType`,
   findPic: `findPic`,
   photoOrPic: `photoOrPic`
+};
+
+export const QUESTION_ACTIONS = {
+  [QUESTION_TYPES.chooseType]: questionChooseType,
+  [QUESTION_TYPES.findPic]: questionFindPic,
+  [QUESTION_TYPES.photoOrPic]: questionPhotoOrPic
 };
 
 export const QUESTION_TITLES = {
@@ -34,5 +45,3 @@ export const POINTS = {
   [ANSWER_VALUES.slow]: -50,
   lives: 50
 };
-
-export const TIME_TO_GAME = 30;

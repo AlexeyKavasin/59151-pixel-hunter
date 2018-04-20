@@ -1,4 +1,4 @@
-import {QUESTION_TYPES, ANSWER_TYPES} from '../constants.js';
+import {QUESTION_TYPES, ANSWER_TYPES} from './constants';
 
 export default [
   {

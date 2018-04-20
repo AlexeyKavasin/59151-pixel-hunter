@@ -1,4 +1,4 @@
-import {LEVELS_COUNT} from '../constants.js';
+import {LEVELS_COUNT} from '../data/constants';
 
 const unknownProgress = `<li class="stats__result stats__result--unknown"></li>`;
 

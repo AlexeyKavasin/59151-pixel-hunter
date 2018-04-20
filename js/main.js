@@ -1,6 +1,6 @@
-import showScreen from './showscreen.js';
-import introEl from './screens/intro.js';
-import {initStatCount} from './data/stats-count.js';
+import showScreen from './showscreen';
+import introScreen from './screens/intro';
+import {initStatCount} from './data/stats-count';
 
-showScreen(introEl());
+showScreen(introScreen());
 initStatCount();
