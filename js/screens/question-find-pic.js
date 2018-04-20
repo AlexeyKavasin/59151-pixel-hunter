@@ -1,5 +1,3 @@
-import showScreen from '../showscreen';
-
 export const askQuestion = (imgs) => {
   return `
     <form class="game__content  game__content--triple">
@@ -10,14 +8,4 @@ export const askQuestion = (imgs) => {
     </div>`;
   }).join(``)}
     </form>`;
-};
-
-export const addBehaviour = (el, nextLevel, correctAnswer) => {
-  const formOptions = el.querySelectorAll(`.game__option`);
-  Array.from(formOptions).forEach((option, ind) => {
-    option.addEventListener(`click`, () => {
-      const isCorrectAnswer = ind === correctAnswer;
-      showScreen(nextLevel(isCorrectAnswer));
-    });
-  });
 };

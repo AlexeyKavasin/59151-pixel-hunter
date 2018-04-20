@@ -14,7 +14,6 @@ export default class GameView extends AbstractView {
 
   get template() {
     const {askQuestion} = QUESTION_ACTIONS[questions[this.state.level].type];
-
     return `
     ${header(this.state)}
     <div class="game">
@@ -28,5 +27,26 @@ export default class GameView extends AbstractView {
   }
 
   bind() {
+    const questionType = questions[this.state.level].type;
+
+    if (questionType === `chooseType` || questionType === `photoOrPic`) {
+      const trigger = this._elem.querySelector(`.game__content`);
+      trigger.addEventListener(`change`, () => {
+        this.onAnswerGiven(questionType, questions[this.state.level].correctAnswer);
+      });
+    }
+
+    if (questionType === `findPic`) {
+      const triggers = this._elem.querySelectorAll(`.game__option`);
+      Array.from(triggers).forEach((trigger, index) => {
+        trigger.addEventListener(`click`, () => {
+          this.onAnswerGiven(questionType, questions[this.state.level].correctAnswer, index);
+        });
+      });
+    }
+
+  }
+
+  onAnswerGiven() {
   }
 }

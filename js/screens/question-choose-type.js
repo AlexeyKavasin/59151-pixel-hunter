@@ -1,5 +1,3 @@
-import showScreen from '../showscreen';
-
 export const askQuestion = (imgs) => {
   return `
   <form class="game__content">
@@ -18,16 +16,4 @@ export const askQuestion = (imgs) => {
       </div>`;
   }).join(``)}
     </form>`;
-};
-
-export const addBehaviour = (el, nextLevel, correctAnswer) => {
-  const form = el.querySelector(`.game__content`);
-  form.addEventListener(`change`, () => {
-    const allAnswers = form.querySelectorAll(`input[type="radio"]`);
-    const answersChecked = form.querySelectorAll(`input[type="radio"]:checked`);
-    if (answersChecked.length === allAnswers.length / 2) {
-      const isCorrectAnswer = correctAnswer[0] === answersChecked[0].value && correctAnswer[1] === answersChecked[1].value;
-      showScreen(nextLevel(isCorrectAnswer));
-    }
-  });
 };
