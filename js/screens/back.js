@@ -1,11 +1,10 @@
-import showScreen from '../showscreen';
-import introScreen from './intro';
+import Application from '../application';
 
 const back = (parent, state) => {
   parent.querySelector(`.back`).addEventListener(`click`, () => {
     state.timer.stop();
     state.timer.clear();
-    showScreen(introScreen());
+    Application.showIntro();
   });
 };
 

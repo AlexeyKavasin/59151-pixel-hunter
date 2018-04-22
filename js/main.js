@@ -1,6 +1,6 @@
-import showScreen from './showscreen';
-import introScreen from './screens/intro';
+import Application from './application';
 import {initStatCount} from './data/stats-count';
 
-showScreen(introScreen());
+Application.showIntro();
+
 initStatCount();

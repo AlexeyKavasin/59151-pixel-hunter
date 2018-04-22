@@ -5,6 +5,7 @@ import {statsScreen} from './stats';
 import {addAnswer, getAnswerValue} from '../data/answers';
 import GameView from './views/game-view';
 import {LEVELS_COUNT, TIME_TO_GAME} from '../data/constants';
+import Application from '../application';
 
 const gameScreen = (state, answers) => {
   const screen = new GameView(state, answers);

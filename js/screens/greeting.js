@@ -1,15 +1,21 @@
 import showScreen from '../showscreen';
-import rulesScreen from './rules';
 import GreetingView from './views/greeting-view';
+import Application from '../application';
 
-const greetingScreen = (state, answers) => {
-  const screen = new GreetingView();
+export default class GreetingScreen {
+  init(state, answers) {
+    const screen = new GreetingView(state, answers);
+    screen.onGreetingContinueClick = () => {
+      Application.showRules(state, answers);
+    }
+    showScreen(screen.element);
+  }
 
-  screen.onGreetingContinueClick = () => {
-    showScreen(rulesScreen(state, answers));
-  };
-
-  return screen.element;
-};
-
-export default greetingScreen;
+  // const screen = new GreetingView();
+  //
+  // screen.onGreetingContinueClick = () => {
+  //   showScreen(rulesScreen(state, answers));
+  // };
+  //
+  // return screen.element;
+}
