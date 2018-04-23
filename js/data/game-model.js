@@ -1,14 +1,9 @@
-import {LEVELS_COUNT, LIVES_COUNT} from './constants';
-import {setLevel, setTimer, setLives, defaultState} from './game-state';
+import {LEVELS_COUNT, LIVES_COUNT, ANSWER_VALUES, FAST_ANSWER, SLOW_ANSWER} from './constants';
 
 export default class GameModel {
-  constructor(data) {
-    this.data = data;
-  }
-
-  update(state) {
+  constructor(state, answers) {
     this.state = state;
-    return this.state;
+    this.answers = answers;
   }
 
   setLevel(state, level) {
@@ -17,7 +12,7 @@ export default class GameModel {
     }
     this.state = Object.assign({}, state);
     this.state.level = level;
-    this.update(this.state);
+    return this.state;
   }
 
   setLives(state, lives) {
@@ -26,7 +21,7 @@ export default class GameModel {
     }
     this.state = Object.assign({}, state);
     this.state.lives = lives;
-    this.update(this.state);
+    return this.state;
   }
 
   setTimer(state, timer) {
@@ -35,19 +30,27 @@ export default class GameModel {
     }
     this.state = Object.assign({}, state);
     this.state.timer = timer;
-    this.update(this.state);
+    return this.state;
   }
 
-  initStatCount() {
-    this.gameStats = [];
+  addAnswer(currentAnswers, answer) {
+    return [...currentAnswers, answer];
   }
 
-  addGameStats(stats) {
-    this.gameStats.push(stats);
+  getAnswerValue(isCorrectAnswer, levelTime) {
+    if (!isCorrectAnswer) {
+      return ANSWER_VALUES.wrong;
+    }
+    if (levelTime <= FAST_ANSWER) {
+      return ANSWER_VALUES.fast;
+    }
+    return levelTime >= SLOW_ANSWER ? ANSWER_VALUES.slow : ANSWER_VALUES.correct;
   }
 
-  getGameStats() {
-    return this.gameStats;
+  goToNextLevel(isCorrectAnswer) {
+    const nextLevel = this.state.level + 1;
+    const currentState = !isCorrectAnswer ? this.setLives(this.state, this.state.lives - 1) : this.state;
+    return this.setLevel(currentState, nextLevel);
   }
 
 }

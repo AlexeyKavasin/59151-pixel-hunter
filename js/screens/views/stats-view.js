@@ -2,7 +2,7 @@ import AbstractView from './abstract-view';
 import header from '../header';
 import footer from '../footer';
 import {gameStatsHtml} from '../stats-progress-bar';
-import {calculateStats, addGameStats, getGameStats} from '../../data/stats-count';
+import {calculateStats} from '../../data/stats-count';
 
 export default class StatsView extends AbstractView {
   constructor(state, answers) {
@@ -37,15 +37,13 @@ export default class StatsView extends AbstractView {
       </table>`;
     };
 
-    const statistic = calculateStats(this.state, this.answers);
-    addGameStats(statistic);
-    const finalStats = getGameStats();
+    const statsObj = calculateStats(this.state, this.answers);
 
     return `
     ${header(this.state)}
     <div class="result">
-      <h1>${statistic.totalResult.success ? `Победа!` : `Вы проиграли`}</h1>
-      ${finalStats.map((stats, index) => {
+      <h1>${statsObj.totalResult.success ? `Победа!` : `Вы проиграли`}</h1>
+      ${[statsObj].map((stats, index) => {
     return statsHtml(stats, index);
   }).join(``)}
     </div>

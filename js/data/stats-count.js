@@ -67,15 +67,3 @@ export const calculateStats = (state, answers) => {
   };
 
 };
-
-export const initStatCount = () => {
-  window.gameStats = [];
-};
-
-export const addGameStats = (stats) => {
-  window.gameStats.push(stats);
-};
-
-export const getGameStats = () => {
-  return window.gameStats;
-};

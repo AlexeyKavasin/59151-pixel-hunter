@@ -2,11 +2,14 @@ import GameModel from './data/game-model';
 import IntroScreen from './screens/intro';
 import GreetingScreen from './screens/greeting';
 import RulesScreen from './screens/rules';
+import GameScreen from './screens/game';
+import StatsScreen from './screens/stats';
 
 export default class Application {
 
   static showIntro() {
-    const intro = new IntroScreen();
+    const model = new GameModel();
+    const intro = new IntroScreen(model);
     intro.init();
   }
 
@@ -21,13 +24,13 @@ export default class Application {
   }
 
   static showGame(state, answers) {
-    const model = new GameModel();
+    const model = new GameModel(state, answers);
     const game = new GameScreen(model);
     game.init(state, answers);
   }
 
-  static showStats(model) {
-    const stats = new StatsScreen(model);
-    stats.init();
+  static showStats(state, answers) {
+    const stats = new StatsScreen(state, answers);
+    stats.init(state, answers);
   }
 }

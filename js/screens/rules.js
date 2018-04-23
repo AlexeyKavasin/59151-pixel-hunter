@@ -19,7 +19,7 @@ export default class rulesScreen {
 
     screen.onRulesFormSubmit = () => {
       Application.showGame(state, answers);
-    }
+    };
 
     showScreen(screen.element);
 
