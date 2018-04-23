@@ -13,17 +13,13 @@ export default class GameScreen {
     this.state = state;
     this.answers = answers;
 
-    if (this.state.level < LEVELS_COUNT && this.state.lives > 0) {
+    if (this.state.level < LEVELS_COUNT && this.state.lives >= 0) {
       const screen = new GameView(state, answers);
       this.state.timer.stop();
       this.state.timer.start(TIME_TO_GAME);
 
       showScreen(screen.element);
       back(screen.element, state);
-
-      document.addEventListener(`timerStop`, () => {
-        Application.showGame(this.model.goToNextLevel(false), this.model.addAnswer(this.answers, this.model.getAnswerValue(false)));
-      });
 
       screen.onAnswerGiven = (questionType, correctAnswer, index) => {
         let isCorrectAnswer = false;
@@ -56,10 +52,17 @@ export default class GameScreen {
           Application.showGame(this.model.goToNextLevel(isCorrectAnswer), currentAnswers);
         }
       };
+
+      document.addEventListener(`timerStop`, () => {
+        Application.showGame(this.model.goToNextLevel(false), this.model.addAnswer(this.answers, this.model.getAnswerValue(false)));
+      });
+
     } else {
       this.state.timer.stop();
       this.state.timer.clear();
       Application.showStats(this.state, this.answers);
     }
+
+
   }
 }

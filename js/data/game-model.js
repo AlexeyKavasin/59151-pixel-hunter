@@ -16,7 +16,7 @@ export default class GameModel {
   }
 
   setLives(state, lives) {
-    if (lives < 0 || lives > LIVES_COUNT) {
+    if (lives > LIVES_COUNT) {
       return null;
     }
     this.state = Object.assign({}, state);
