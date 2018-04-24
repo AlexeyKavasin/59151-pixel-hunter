@@ -4,7 +4,7 @@ const header = (state) => {
   };
 
   const livesHtml = () => {
-    return state.timer.getTimer() && state.lives ? `
+    return state.timer.getTimer() && state.lives >= 0 ? `
       <div class="game__lives">
       ${new Array(3 - state.lives)
       .fill(`<img src="img/heart__empty.svg" class="game__heart" alt="Life" width="32" height="32">`)

@@ -7,6 +7,7 @@ export const LIVES_COUNT = 3;
 export const FAST_ANSWER = 9;
 export const SLOW_ANSWER = 21;
 export const TIME_TO_GAME = 30;
+export const answers = [];
 
 export const QUESTION_TYPES = {
   chooseType: `chooseType`,

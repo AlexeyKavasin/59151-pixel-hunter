@@ -1,29 +1,28 @@
 import showScreen from '../showscreen';
 import back from './back';
-import gameScreen from './game';
 import RulesView from './views/rules-view';
+import Application from '../application';
 
-const rulesScreen = (state, answers) => {
-  const screen = new RulesView(state, answers);
+export default class rulesScreen {
+  init(state, answers) {
+    const screen = new RulesView(state, answers);
+    const submitBtn = screen.element.querySelector(`.rules__button`);
+    const nameInput = screen.element.querySelector(`.rules__input`);
 
-  const submitBtn = screen.element.querySelector(`.rules__button`);
-  const nameInput = screen.element.querySelector(`.rules__input`);
+    nameInput.addEventListener(`input`, ({target}) => {
+      if (target.value.trim().length > 0) {
+        submitBtn.removeAttribute(`disabled`);
+      } else {
+        submitBtn.setAttribute(`disabled`, `disabled`);
+      }
+    });
 
-  nameInput.addEventListener(`input`, ({target}) => {
-    if (target.value.trim().length > 0) {
-      submitBtn.removeAttribute(`disabled`);
-    } else {
-      submitBtn.setAttribute(`disabled`, `disabled`);
-    }
-  });
+    screen.onRulesFormSubmit = () => {
+      Application.showGame(state, answers);
+    };
 
-  screen.onRulesFormSubmit = () => {
-    showScreen(gameScreen(state, answers));
-  };
+    showScreen(screen.element);
 
-  back(screen.element, state);
-
-  return screen.element;
-};
-
-export default rulesScreen;
+    back(screen.element, state);
+  }
+}
