@@ -1,7 +1,7 @@
 import AbstractView from './abstract-view';
 import header from '../header';
 import footer from '../footer';
-import {gameStatsHtml} from '../stats-progress-bar';
+import {getGameStatsHtml} from '../stats-progress-bar';
 import {calculateStats} from '../../data/stats-count';
 
 export default class StatsView extends AbstractView {
@@ -17,7 +17,7 @@ export default class StatsView extends AbstractView {
       <table class="result__table">
         <tr>
           <td class="result__number">${index + 1}.</td>
-          <td colspan="2">${gameStatsHtml(answers)}</td>
+          <td colspan="2">${getGameStatsHtml(answers)}</td>
           <td class="result__points">×&nbsp;100</td>
           <td class="result__total">${regularPoints ? regularPoints : 0}</td>
         </tr>

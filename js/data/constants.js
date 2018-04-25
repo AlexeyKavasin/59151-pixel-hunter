@@ -6,7 +6,7 @@ export const LEVELS_COUNT = 10;
 export const LIVES_COUNT = 3;
 export const FAST_ANSWER = 9;
 export const SLOW_ANSWER = 21;
-export const TIME_TO_GAME = 30;
+export const TIME_TO_GAME = 1000;
 export const answers = [];
 
 export const QUESTION_TYPES = {
@@ -21,15 +21,9 @@ export const QUESTION_ACTIONS = {
   [QUESTION_TYPES.photoOrPic]: questionPhotoOrPic
 };
 
-export const QUESTION_TITLES = {
-  [QUESTION_TYPES.chooseType]: `Угадайте для каждого изображения фото или рисунок?`,
-  [QUESTION_TYPES.photoOrPic]: `Угадай, фото или рисунок?`,
-  [QUESTION_TYPES.findPic]: `Найдите рисунок среди изображений`
-};
-
 export const ANSWER_TYPES = {
   photo: `photo`,
-  paint: `paint`
+  painting: `painting`
 };
 
 export const ANSWER_VALUES = {

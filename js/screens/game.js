@@ -40,14 +40,14 @@ export default class GameScreen {
         if (questionType === `photoOrPic`) {
           const userAnswer = screen.element.querySelector(`input[type="radio"]:checked`);
           if (userAnswer) {
-            isCorrectAnswer = userAnswer.value === correctAnswer;
+            isCorrectAnswer = userAnswer.value === correctAnswer[0];
             currentAnswers = this.model.addAnswer(this.answers, this.model.getAnswerValue(isCorrectAnswer, levelTime));
             Application.showGame(this.model.goToNextLevel(isCorrectAnswer), currentAnswers);
           }
         }
 
         if (questionType === `findPic`) {
-          isCorrectAnswer = index === correctAnswer;
+          isCorrectAnswer = correctAnswer[index] === correctAnswer;
           currentAnswers = this.model.addAnswer(this.answers, this.model.getAnswerValue(isCorrectAnswer, levelTime));
           Application.showGame(this.model.goToNextLevel(isCorrectAnswer), currentAnswers);
         }

@@ -2,7 +2,7 @@ import {LEVELS_COUNT} from '../data/constants';
 
 const unknownProgress = `<li class="stats__result stats__result--unknown"></li>`;
 
-export const gameStatsHtml = (data) => {
+export const getGameStatsHtml = (data) => {
   return `
     <ul class="stats">
       ${[...data].map((result) => {

@@ -2,8 +2,8 @@ import AbstractView from './abstract-view';
 import header from '../header';
 import footer from '../footer';
 import questions from '../../data/questions';
-import {gameStatsHtml} from '../stats-progress-bar';
-import {QUESTION_TITLES, QUESTION_ACTIONS} from '../../data/constants';
+import {getGameStatsHtml} from '../stats-progress-bar';
+import {QUESTION_ACTIONS} from '../../data/constants';
 
 export default class GameView extends AbstractView {
   constructor(state, answers) {
@@ -14,13 +14,17 @@ export default class GameView extends AbstractView {
 
   get template() {
     const {askQuestion} = QUESTION_ACTIONS[questions[this.state.level].type];
+    const task = questions[this.state.level].task;
+    const images = questions[this.state.level].images;
+    const width = questions[this.state.level].width;
+    const height = questions[this.state.level].height;
     return `
     ${header(this.state)}
     <div class="game">
-      <p class="game__task">${QUESTION_TITLES[questions[this.state.level].type]}</p>
-      ${askQuestion(questions[this.state.level].images)}
+      <p class="game__task">${task}</p>
+      ${askQuestion(images, width, height)}
       <div class="stats">
-      ${gameStatsHtml(this.answers)}
+      ${getGameStatsHtml(this.answers)}
       </div>
     </div>
     ${footer}`;
@@ -40,7 +44,7 @@ export default class GameView extends AbstractView {
       const triggers = this._elem.querySelectorAll(`.game__option`);
       Array.from(triggers).forEach((trigger, index) => {
         trigger.addEventListener(`click`, () => {
-          this.onAnswerGiven(questionType, questions[this.state.level].correctAnswer, index);
+          this.onAnswerGiven(questionType, questions[this.state.level].correctAnswer[index], index);
         });
       });
     }
