@@ -19,7 +19,7 @@ export default class GameScreen {
       this.state.timer.start(TIME_TO_GAME);
 
       showScreen(screen.element);
-      back(screen.element, state);
+      back(screen.element, state, true);
 
       screen.onAnswerGiven = (questionType, correctAnswer, index) => {
         let isCorrectAnswer = false;

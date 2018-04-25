@@ -8,14 +8,14 @@ import StatsScreen from './screens/stats';
 export default class Application {
 
   static showIntro() {
-    const model = new GameModel();
-    const intro = new IntroScreen(model);
+    const intro = new IntroScreen();
     intro.init();
   }
 
-  static showGreeting(state, answers) {
-    const greeting = new GreetingScreen(state, answers);
-    greeting.init(state, answers);
+  static showGreeting() {
+    const model = new GameModel();
+    const greeting = new GreetingScreen(model);
+    greeting.init();
   }
 
   static showRules(state, answers) {
