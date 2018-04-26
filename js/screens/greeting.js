@@ -10,10 +10,10 @@ export default class GreetingScreen {
   constructor(model) {
     this.model = model;
   }
-  init() {
+  init(data) {
     const screen = new GreetingView();
     screen.onGreetingContinueClick = () => {
-      Application.showRules(this.model.setTimer(defaultState, timer()), answers);
+      Application.showRules(this.model.setTimer(defaultState, timer()), answers, data);
       handleTimer();
     };
     showScreen(screen.element);

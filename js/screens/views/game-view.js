@@ -1,23 +1,23 @@
 import AbstractView from './abstract-view';
 import header from '../header';
 import footer from '../footer';
-import {questions} from '../../data/questions';
 import {getGameStatsHtml} from '../stats-progress-bar';
 import {QUESTION_ACTIONS} from '../../data/constants';
 
 export default class GameView extends AbstractView {
-  constructor(state, answers) {
+  constructor(state, answers, gameData) {
     super();
     this.state = state;
     this.answers = answers;
+    this.gameData = gameData;
   }
 
   get template() {
-    const {askQuestion} = QUESTION_ACTIONS[questions[this.state.level].type];
-    const task = questions[this.state.level].task;
-    const images = questions[this.state.level].images;
-    const width = questions[this.state.level].width;
-    const height = questions[this.state.level].height;
+    const {askQuestion} = QUESTION_ACTIONS[this.gameData[this.state.level].type];
+    const task = this.gameData[this.state.level].task;
+    const images = this.gameData[this.state.level].images;
+    const width = this.gameData[this.state.level].width;
+    const height = this.gameData[this.state.level].height;
     return `
     ${header(this.state)}
     <div class="game">
@@ -31,19 +31,19 @@ export default class GameView extends AbstractView {
   }
 
   bind() {
-    const questionType = questions[this.state.level].type;
+    const questionType = this.gameData[this.state.level].type;
 
-    if (questionType === `chooseType` || questionType === `photoOrPic`) {
+    if (questionType === `two-of-two` || questionType === `tinder-like`) {
       const trigger = this._elem.querySelector(`.game__content`);
-      const loadedAnswers = questions[this.state.level].loadedAnswers;
+      const loadedAnswers = this.gameData[this.state.level].loadedAnswers;
       trigger.addEventListener(`change`, () => {
         this.onAnswerGiven(questionType, loadedAnswers);
       });
     }
 
-    if (questionType === `findUnique`) {
+    if (questionType === `one-of-three`) {
       const triggers = this._elem.querySelectorAll(`.game__option`);
-      const loadedAnswers = questions[this.state.level].loadedAnswers;
+      const loadedAnswers = this.gameData[this.state.level].loadedAnswers;
       Array.from(triggers).forEach((trigger, index) => {
         trigger.addEventListener(`click`, () => {
           this.onAnswerGiven(questionType, loadedAnswers, index);

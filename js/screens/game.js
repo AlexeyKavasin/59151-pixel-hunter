@@ -10,12 +10,12 @@ export default class GameScreen {
     this.model = model;
   }
 
-  init(state, answers) {
+  init(state, answers, gameData) {
     this.state = state;
     this.answers = answers;
 
     if (this.state.level < LEVELS_COUNT && this.state.lives >= 0) {
-      const screen = new GameView(state, answers);
+      const screen = new GameView(state, answers, gameData);
       this.state.timer.stop();
       this.state.timer.start(TIME_TO_GAME);
 
@@ -28,7 +28,7 @@ export default class GameScreen {
 
         const levelTime = TIME_TO_GAME - this.state.timer.getTimer();
 
-        if (questionType === `chooseType`) {
+        if (questionType === `two-of-two`) {
           const allAnswers = screen.element.querySelectorAll(`input[type="radio"]`);
           const answersChecked = screen.element.querySelectorAll(`input[type="radio"]:checked`);
           if (answersChecked.length === allAnswers.length / 2) {
@@ -38,7 +38,7 @@ export default class GameScreen {
           }
         }
 
-        if (questionType === `photoOrPic`) {
+        if (questionType === `tinder-like`) {
           const userAnswer = screen.element.querySelector(`input[type="radio"]:checked`);
           if (userAnswer) {
             isCorrectAnswer = userAnswer.value === loadedAnswers[0];
@@ -47,7 +47,7 @@ export default class GameScreen {
           }
         }
 
-        if (questionType === `findUnique`) {
+        if (questionType === `one-of-three`) {
           const correctAnswer = getUnique(loadedAnswers);
           const userAnswer = loadedAnswers[index];
           isCorrectAnswer = correctAnswer === userAnswer;

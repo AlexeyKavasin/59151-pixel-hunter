@@ -10,20 +10,15 @@ export const TIME_TO_GAME = 30;
 export const answers = [];
 
 export const QUESTION_TYPES = {
-  chooseType: `chooseType`,
-  findUnique: `findUnique`,
-  photoOrPic: `photoOrPic`
+  chooseType: `two-of-two`,
+  findUnique: `one-of-three`,
+  photoOrPic: `tinder-like`
 };
 
 export const QUESTION_ACTIONS = {
   [QUESTION_TYPES.chooseType]: questionChooseType,
   [QUESTION_TYPES.findUnique]: questionfindUnique,
   [QUESTION_TYPES.photoOrPic]: questionPhotoOrPic
-};
-
-export const ANSWER_TYPES = {
-  photo: `photo`,
-  paint: `paint`
 };
 
 export const ANSWER_VALUES = {

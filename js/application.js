@@ -6,7 +6,8 @@ import GameScreen from './screens/game';
 import StatsScreen from './screens/stats';
 import Loader from './loader';
 import {trimQuestionsData} from "./questions-data-trimmer";
-import {saveQuestionsData} from "./data/questions";
+
+let gameData;
 
 export default class Application {
 
@@ -15,8 +16,9 @@ export default class Application {
     const intro = new IntroScreen();
     intro.init();
     loader.loadData(`https://es.dump.academy/pixel-hunter/questions`)
-        .then(trimQuestionsData)
-        .then((data) => saveQuestionsData(data))
+        .then((data) => {
+          gameData = trimQuestionsData(data);
+        })
         .then(Application.showGreeting)
         .catch(loader.showError);
   }
@@ -35,7 +37,7 @@ export default class Application {
   static showGame(state, answers) {
     const model = new GameModel(state, answers);
     const game = new GameScreen(model);
-    game.init(state, answers);
+    game.init(state, answers, gameData);
   }
 
   static showStats(state, answers) {
