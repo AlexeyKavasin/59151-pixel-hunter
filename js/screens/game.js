@@ -1,4 +1,5 @@
 import showScreen from '../showscreen';
+import getUnique from '../get-unique';
 import back from './back';
 import GameView from './views/game-view';
 import {TIME_TO_GAME, LEVELS_COUNT} from '../data/constants';
@@ -21,7 +22,7 @@ export default class GameScreen {
       showScreen(screen.element);
       back(screen.element, state, true);
 
-      screen.onAnswerGiven = (questionType, correctAnswer, index) => {
+      screen.onAnswerGiven = (questionType, loadedAnswers, index) => {
         let isCorrectAnswer = false;
         let currentAnswers = ``;
 
@@ -31,7 +32,7 @@ export default class GameScreen {
           const allAnswers = screen.element.querySelectorAll(`input[type="radio"]`);
           const answersChecked = screen.element.querySelectorAll(`input[type="radio"]:checked`);
           if (answersChecked.length === allAnswers.length / 2) {
-            isCorrectAnswer = correctAnswer[0] === answersChecked[0].value && correctAnswer[1] === answersChecked[1].value;
+            isCorrectAnswer = loadedAnswers[0] === answersChecked[0].value && loadedAnswers[1] === answersChecked[1].value;
             currentAnswers = this.model.addAnswer(this.answers, this.model.getAnswerValue(isCorrectAnswer, levelTime));
             Application.showGame(this.model.goToNextLevel(isCorrectAnswer), currentAnswers);
           }
@@ -40,14 +41,16 @@ export default class GameScreen {
         if (questionType === `photoOrPic`) {
           const userAnswer = screen.element.querySelector(`input[type="radio"]:checked`);
           if (userAnswer) {
-            isCorrectAnswer = userAnswer.value === correctAnswer[0];
+            isCorrectAnswer = userAnswer.value === loadedAnswers[0];
             currentAnswers = this.model.addAnswer(this.answers, this.model.getAnswerValue(isCorrectAnswer, levelTime));
             Application.showGame(this.model.goToNextLevel(isCorrectAnswer), currentAnswers);
           }
         }
 
-        if (questionType === `findPic`) {
-          isCorrectAnswer = correctAnswer[index] === correctAnswer;
+        if (questionType === `findUnique`) {
+          const correctAnswer = getUnique(loadedAnswers);
+          const userAnswer = loadedAnswers[index];
+          isCorrectAnswer = correctAnswer === userAnswer;
           currentAnswers = this.model.addAnswer(this.answers, this.model.getAnswerValue(isCorrectAnswer, levelTime));
           Application.showGame(this.model.goToNextLevel(isCorrectAnswer), currentAnswers);
         }

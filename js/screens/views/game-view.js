@@ -1,7 +1,7 @@
 import AbstractView from './abstract-view';
 import header from '../header';
 import footer from '../footer';
-import questions from '../../data/questions';
+import {questions} from '../../data/questions';
 import {getGameStatsHtml} from '../stats-progress-bar';
 import {QUESTION_ACTIONS} from '../../data/constants';
 
@@ -35,16 +35,18 @@ export default class GameView extends AbstractView {
 
     if (questionType === `chooseType` || questionType === `photoOrPic`) {
       const trigger = this._elem.querySelector(`.game__content`);
+      const loadedAnswers = questions[this.state.level].loadedAnswers;
       trigger.addEventListener(`change`, () => {
-        this.onAnswerGiven(questionType, questions[this.state.level].correctAnswer);
+        this.onAnswerGiven(questionType, loadedAnswers);
       });
     }
 
-    if (questionType === `findPic`) {
+    if (questionType === `findUnique`) {
       const triggers = this._elem.querySelectorAll(`.game__option`);
+      const loadedAnswers = questions[this.state.level].loadedAnswers;
       Array.from(triggers).forEach((trigger, index) => {
         trigger.addEventListener(`click`, () => {
-          this.onAnswerGiven(questionType, questions[this.state.level].correctAnswer[index], index);
+          this.onAnswerGiven(questionType, loadedAnswers, index);
         });
       });
     }

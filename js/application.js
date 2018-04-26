@@ -4,12 +4,21 @@ import GreetingScreen from './screens/greeting';
 import RulesScreen from './screens/rules';
 import GameScreen from './screens/game';
 import StatsScreen from './screens/stats';
+import Loader from './loader';
+import {trimQuestionsData} from "./questions-data-trimmer";
+import {saveQuestionsData} from "./data/questions";
 
 export default class Application {
 
   static showIntro() {
+    const loader = new Loader();
     const intro = new IntroScreen();
     intro.init();
+    loader.loadData(`https://es.dump.academy/pixel-hunter/questions`)
+        .then(trimQuestionsData)
+        .then((data) => saveQuestionsData(data))
+        .then(Application.showGreeting)
+        .catch(loader.showError);
   }
 
   static showGreeting() {
