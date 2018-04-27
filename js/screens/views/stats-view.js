@@ -2,21 +2,22 @@ import AbstractView from './abstract-view';
 import header from '../header';
 import footer from '../footer';
 import {getGameStatsHtml} from '../stats-progress-bar';
-import {calculateStats} from '../../data/stats-count';
 
 export default class StatsView extends AbstractView {
-  constructor(state, answers) {
+  constructor(state, answers, stats) {
     super();
     this.state = state;
     this.answers = answers;
+    this.stats = stats;
   }
 
   get template() {
-    const statsHtml = ({answers, bonuses, regularPoints, totalResult: {success, score}}, index) => {
+    const finalStats = this.stats.reverse();
+    const statsToHtml = ({answers, bonuses, regularPoints, totalResult: {success, score}}, index) => {
       return `
       <table class="result__table">
         <tr>
-          <td class="result__number">${index + 1}.</td>
+          <td class="result__number">${index + 1}. ${this.state.userName}</td>
           <td colspan="2">${getGameStatsHtml(answers)}</td>
           <td class="result__points">×&nbsp;100</td>
           <td class="result__total">${regularPoints ? regularPoints : 0}</td>
@@ -37,14 +38,12 @@ export default class StatsView extends AbstractView {
       </table>`;
     };
 
-    const statsObj = calculateStats(this.state, this.answers);
-
     return `
     ${header(this.state)}
     <div class="result">
-      <h1>${statsObj.totalResult.success ? `Победа!` : `Вы проиграли`}</h1>
-      ${[statsObj].map((stats, index) => {
-    return statsHtml(stats, index);
+      <h1>${finalStats[0].totalResult.success ? `Победа!` : `Вы проиграли`}</h1>
+      ${finalStats.map((stats, index) => {
+    return statsToHtml(stats, index);
   }).join(``)}
     </div>
     ${footer}`;
