@@ -1,12 +1,20 @@
 import showScreen from '../showscreen';
 import GreetingView from './views/greeting-view';
 import Application from '../application';
+import {defaultState} from '../data/game-state';
+import {timer} from '../timer';
+import handleTimer from '../timer-handler';
+import {answers} from '../data/constants';
 
 export default class GreetingScreen {
-  init(state, answers) {
-    const screen = new GreetingView(state, answers);
+  constructor(model) {
+    this.model = model;
+  }
+  init(data) {
+    const screen = new GreetingView();
     screen.onGreetingContinueClick = () => {
-      Application.showRules(state, answers);
+      Application.showRules(this.model.setTimer(defaultState, timer()), answers, data);
+      handleTimer();
     };
     showScreen(screen.element);
   }

@@ -1,10 +1,16 @@
 import Application from '../application';
+import Popup from './popup';
 
-const back = (parent, state) => {
+const back = (parent, state, gameIsOn) => {
   parent.querySelector(`.back`).addEventListener(`click`, () => {
-    state.timer.stop();
-    state.timer.clear();
-    Application.showIntro();
+    if (gameIsOn) {
+      const popup = new Popup();
+      popup.init(state);
+    } else {
+      state.timer.stop();
+      state.timer.clear();
+      Application.showGreeting();
+    }
   });
 };
 

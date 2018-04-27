@@ -4,7 +4,7 @@ import RulesView from './views/rules-view';
 import Application from '../application';
 
 export default class rulesScreen {
-  init(state, answers) {
+  init(state, answers, data) {
     const screen = new RulesView(state, answers);
     const submitBtn = screen.element.querySelector(`.rules__button`);
     const nameInput = screen.element.querySelector(`.rules__input`);
@@ -18,7 +18,7 @@ export default class rulesScreen {
     });
 
     screen.onRulesFormSubmit = () => {
-      Application.showGame(state, answers);
+      Application.showGame(state, answers, data);
     };
 
     showScreen(screen.element);

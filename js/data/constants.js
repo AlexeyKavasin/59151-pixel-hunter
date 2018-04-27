@@ -1,5 +1,5 @@
 import * as questionChooseType from '../screens/question-choose-type';
-import * as questionFindPic from '../screens/question-find-pic';
+import * as questionfindUnique from '../screens/question-find-pic';
 import * as questionPhotoOrPic from '../screens/question-photo-or-pic';
 
 export const LEVELS_COUNT = 10;
@@ -10,26 +10,15 @@ export const TIME_TO_GAME = 30;
 export const answers = [];
 
 export const QUESTION_TYPES = {
-  chooseType: `chooseType`,
-  findPic: `findPic`,
-  photoOrPic: `photoOrPic`
+  chooseType: `two-of-two`,
+  findUnique: `one-of-three`,
+  photoOrPic: `tinder-like`
 };
 
 export const QUESTION_ACTIONS = {
   [QUESTION_TYPES.chooseType]: questionChooseType,
-  [QUESTION_TYPES.findPic]: questionFindPic,
+  [QUESTION_TYPES.findUnique]: questionfindUnique,
   [QUESTION_TYPES.photoOrPic]: questionPhotoOrPic
-};
-
-export const QUESTION_TITLES = {
-  [QUESTION_TYPES.chooseType]: `Угадайте для каждого изображения фото или рисунок?`,
-  [QUESTION_TYPES.photoOrPic]: `Угадай, фото или рисунок?`,
-  [QUESTION_TYPES.findPic]: `Найдите рисунок среди изображений`
-};
-
-export const ANSWER_TYPES = {
-  photo: `photo`,
-  paint: `paint`
 };
 
 export const ANSWER_VALUES = {
