@@ -14,10 +14,10 @@ export default class GameScreen {
     this.state = state;
     this.answers = answers;
 
-    if (this.state.level < LEVELS_COUNT && this.state.lives >= 0) {
+    if (this.state.LEVEL < LEVELS_COUNT && this.state.LIVES >= 0) {
       const screen = new GameView(state, answers, gameData);
-      this.state.timer.stop();
-      this.state.timer.start(TIME_TO_GAME);
+      this.state.TIMER.stop();
+      this.state.TIMER.start(TIME_TO_GAME);
 
       showScreen(screen.element);
       back(screen.element, state, true);
@@ -26,7 +26,7 @@ export default class GameScreen {
         let isCorrectAnswer = false;
         let currentAnswers = ``;
 
-        const levelTime = TIME_TO_GAME - this.state.timer.getTimer();
+        const levelTime = TIME_TO_GAME - this.state.TIMER.getTimer();
 
         if (questionType === `two-of-two`) {
           const allAnswers = screen.element.querySelectorAll(`input[type="radio"]`);
@@ -61,8 +61,8 @@ export default class GameScreen {
       });
 
     } else {
-      this.state.timer.stop();
-      this.state.timer.clear();
+      this.state.TIMER.stop();
+      this.state.TIMER.clear();
       Application.showStats(this.state, this.answers);
     }
 

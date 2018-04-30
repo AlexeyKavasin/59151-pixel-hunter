@@ -17,7 +17,7 @@ export default class StatsView extends AbstractView {
       return `
       <table class="result__table">
         <tr>
-          <td class="result__number">${index + 1}. ${this.state.userName}</td>
+          <td class="result__number">${index + 1}. ${this.state.USERNAME}</td>
           <td colspan="2">${getGameStatsHtml(answers)}</td>
           <td class="result__points">×&nbsp;100</td>
           <td class="result__total">${regularPoints ? regularPoints : 0}</td>

@@ -7,8 +7,8 @@ const back = (parent, state, gameIsOn) => {
       const popup = new Popup();
       popup.init(state);
     } else {
-      state.timer.stop();
-      state.timer.clear();
+      state.TIMER.stop();
+      state.TIMER.clear();
       Application.showGreeting();
     }
   });

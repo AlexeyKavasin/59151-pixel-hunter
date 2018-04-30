@@ -1,4 +1,4 @@
-import {LEVELS_COUNT, POINTS, ANSWER_VALUES} from './constants';
+import {LEVELS_COUNT, Points, AnswerValues} from './constants';
 
 export const calculateStats = (state, answers) => {
   if (answers.length < LEVELS_COUNT) {
@@ -12,15 +12,15 @@ export const calculateStats = (state, answers) => {
     };
   }
 
-  const totalFastAnswers = answers.filter((answer) => answer === ANSWER_VALUES.fast).length;
-  const totalSlowAnswers = answers.filter((answer) => answer === ANSWER_VALUES.slow).length;
-  const totalCorrectAnswers = answers.filter((answer) => answer !== ANSWER_VALUES.wrong).length;
-  const totalLivesRemained = state.lives;
+  const totalFastAnswers = answers.filter((answer) => answer === AnswerValues.FAST).length;
+  const totalSlowAnswers = answers.filter((answer) => answer === AnswerValues.SLOW).length;
+  const totalCorrectAnswers = answers.filter((answer) => answer !== AnswerValues.WRONG).length;
+  const totalLivesRemained = state.LIVES;
 
-  const regularPoints = totalCorrectAnswers * POINTS[ANSWER_VALUES.correct];
-  const fastBonus = totalFastAnswers * POINTS[ANSWER_VALUES.fast];
-  const slowBonus = totalSlowAnswers * POINTS[ANSWER_VALUES.slow];
-  const livesBonus = totalLivesRemained * POINTS.lives;
+  const regularPoints = totalCorrectAnswers * Points[AnswerValues.CORRECT];
+  const fastBonus = totalFastAnswers * Points[AnswerValues.FAST];
+  const slowBonus = totalSlowAnswers * Points[AnswerValues.SLOW];
+  const livesBonus = totalLivesRemained * Points.LIVES;
 
   const bonuses = [];
 
@@ -29,7 +29,7 @@ export const calculateStats = (state, answers) => {
       title: `Бонус за скорость`,
       icon: `fast`,
       count: totalFastAnswers,
-      points: POINTS[ANSWER_VALUES.fast],
+      points: Points[AnswerValues.FAST],
       total: fastBonus
     });
   }
@@ -39,7 +39,7 @@ export const calculateStats = (state, answers) => {
       title: `Штраф за медлительность`,
       icon: `slow`,
       count: totalSlowAnswers,
-      points: POINTS[ANSWER_VALUES.slow],
+      points: Points[AnswerValues.SLOW],
       total: slowBonus
     });
   }
@@ -49,7 +49,7 @@ export const calculateStats = (state, answers) => {
       title: `Бонус за жизни`,
       icon: `alive`,
       count: totalLivesRemained,
-      points: POINTS.lives,
+      points: Points.LIVES,
       total: livesBonus
     });
   }

@@ -21,7 +21,7 @@ export default class rulesScreen {
     });
 
     screen.onRulesFormSubmit = () => {
-      this.state.userName = nameInput.value;
+      this.state.USERNAME = nameInput.value;
       Application.showGame(this.state, this.answers);
     };
 

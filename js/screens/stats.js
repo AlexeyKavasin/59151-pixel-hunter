@@ -10,8 +10,8 @@ export default class StatsScreen {
     this.answers = answers;
     const currentStats = calculateStats(this.state, this.answers);
     const loader = new Loader();
-    loader.uploadStats(currentStats, this.state.userName)
-        .then(() => loader.loadStats(this.state.userName))
+    loader.uploadStats(currentStats, this.state.USERNAME)
+        .then(() => loader.loadStats(this.state.USERNAME))
         .then((loadedStats) => {
           const screen = new StatsView(state, answers, loadedStats);
           back(screen.element, state);

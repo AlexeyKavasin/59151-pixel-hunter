@@ -4,19 +4,19 @@ import Application from '../application';
 export default class Popup {
   init(state) {
     const screen = new PopupView();
-    const remainedTime = state.timer.getTimer();
+    const remainedTime = state.TIMER.getTimer();
     document.querySelector(`body`).appendChild(screen.element);
-    state.timer.stop();
+    state.TIMER.stop();
 
     screen.onYesClick = () => {
-      state.timer.clear();
+      state.TIMER.clear();
       screen.hidePopup();
       Application.showGreeting();
     };
 
     screen.onNoClick = () => {
       screen.hidePopup();
-      state.timer.start(remainedTime);
+      state.TIMER.start(remainedTime);
     };
   }
 }
