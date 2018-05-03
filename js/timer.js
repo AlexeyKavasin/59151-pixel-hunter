@@ -1,6 +1,6 @@
 export const timer = () => {
 
-  const interval = 1000;
+  const INTERVAL = 1000;
   let timerId = null;
   let time = 0;
 
@@ -8,13 +8,13 @@ export const timer = () => {
     start: (timerValue) => {
       time = timerValue;
       timerId = setInterval(() => {
-        time = time - 1;
-        const event = time > 0 ?
+        --time;
+        const timerAction = time > 0 ?
           new CustomEvent(`timerUpdate`, {detail: {timer: time}}) :
           new CustomEvent(`timerStop`);
 
-        document.dispatchEvent(event);
-      }, interval);
+        document.dispatchEvent(timerAction);
+      }, INTERVAL);
     },
     stop: () => {
       clearInterval(timerId);
