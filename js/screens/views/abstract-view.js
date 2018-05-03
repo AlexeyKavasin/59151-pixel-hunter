@@ -11,7 +11,7 @@ export default class AbstractView {
 
   }
 
-  render() {
+  _render() {
     return getElFromTemplate(this.template);
   }
 
@@ -21,7 +21,7 @@ export default class AbstractView {
 
   get element() {
     if (!this._elem) {
-      this._elem = this.render();
+      this._elem = this._render();
       this.bind();
     }
 
